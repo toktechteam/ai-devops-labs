@@ -1,0 +1,252 @@
+:root {
+  color-scheme: light;
+  --bg: #0f1216;
+  --panel: #151a20;
+  --panel-2: #1c232c;
+  --text: #f2f5f9;
+  --muted: #9aa6b2;
+  --accent: #ff8a3d;
+  --accent-2: #f5b257;
+  --border: #28303a;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1c232c 0%, #0f1216 60%);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.env-chip {
+  background: var(--panel);
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.config {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+input, textarea {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.btn {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn.primary {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: #111;
+  font-weight: 600;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.status {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--panel-2);
+  color: var(--muted);
+}
+
+.status.ok {
+  color: #1ce7a8;
+}
+
+.status.error {
+  color: #ff6b6b;
+}
+
+.status.busy {
+  color: var(--accent);
+}
+
+.chat-log {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 6px;
+  overflow-y: auto;
+}
+
+.bubble {
+  padding: 12px 14px;
+  border-radius: 14px;
+  max-width: 82%;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.bubble.user {
+  background: #1b3c49;
+  align-self: flex-end;
+}
+
+.bubble.assistant {
+  background: #243040;
+  align-self: flex-start;
+}
+
+.composer {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.composer textarea {
+  flex: 1;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.metric-card {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metric-card.highlight {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(255, 138, 61, 0.3);
+}
+
+
+.metric-name {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.metric-value {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.metric-value span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.metric-spark {
+  height: 40px;
+}
+
+.footer {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .composer {
+    flex-direction: column;
+  }
+}
