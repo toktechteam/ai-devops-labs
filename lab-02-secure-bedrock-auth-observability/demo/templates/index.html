@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bedrock Gateway Demo</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div>
+          <div class="title">Bedrock Gateway Demo</div>
+          <div class="subtitle">Chat with your API Gateway + Bedrock Lambda and watch live metrics.</div>
+        </div>
+        <div class="env-chip">Region: <span id="regionLabel"></span></div>
+      </header>
+
+      <section class="config">
+        <div class="field">
+          <label for="apiUrl">API Invoke URL</label>
+          <input id="apiUrl" type="text" placeholder="https://.../prod/invoke" />
+        </div>
+        <div class="field">
+          <label for="authToken">Auth Token</label>
+          <input id="authToken" type="password" placeholder="Bearer token" />
+        </div>
+        <div class="field">
+          <label for="modelId">Model Id</label>
+          <input id="modelId" type="text" />
+        </div>
+        <div class="field">
+          <label for="namespace">Metrics Namespace</label>
+          <input id="namespace" type="text" />
+        </div>
+        <button id="saveConfig" class="btn primary">Save Settings</button>
+      </section>
+
+      <main class="grid">
+        <section class="panel chat">
+          <div class="panel-header">
+            <h2>Chat</h2>
+            <div class="status" id="chatStatus">Idle</div>
+          </div>
+          <div id="chatLog" class="chat-log"></div>
+          <div class="composer">
+            <textarea id="prompt" rows="3" placeholder="Ask about infrastructure as code..."></textarea>
+            <button id="sendPrompt" class="btn primary">Send</button>
+          </div>
+        </section>
+
+        <section class="panel metrics">
+          <div class="panel-header">
+            <h2>Live Metrics</h2>
+            <div class="status" id="metricsStatus">Loading...</div>
+          </div>
+          <div class="metric-grid" id="metricGrid"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        Metrics refresh every 15 seconds. New EMF metrics may take 1-2 minutes to appear.
+      </footer>
+    </div>
+
+    <script>
+      window.DEMO_DEFAULTS = {
+        apiUrl: "{{ default_api_url }}",
+        authToken: "{{ default_auth_token }}",
+        namespace: "{{ default_namespace }}",
+        region: "{{ default_region }}",
+        modelId: "{{ default_model_id }}",
+      };
+    </script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
