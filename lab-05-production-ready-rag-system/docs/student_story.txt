@@ -1,0 +1,31 @@
+A DevOps engineer named Riya is on-call for a Kubernetes cluster running the payment API.
+
+Incident summary:
+- Time: 02:15 UTC
+- Symptom: API requests started failing
+- Kubernetes event: Pods entered CrashLoopBackOff
+
+Initial investigation:
+- Deployment: payments-api
+- Namespace: prod
+- Error: Readiness probe failed, HTTP 500
+- Pod logs: "DB connection refused" and "timeout contacting postgres"
+
+Actions taken:
+1. Riya checked the service endpoints and saw zero ready endpoints.
+2. She inspected the ConfigMap and found the database hostname was set to "postgres.internal".
+3. The correct hostname should be "postgres.prod.svc.cluster.local".
+4. She updated the ConfigMap and restarted the deployment.
+5. Pods stabilized and requests recovered.
+
+Post-incident notes:
+- Add validation for required environment variables.
+- Add alert on readiness probe failures.
+- Document the correct database hostname in runbooks.
+
+Commands used:
+- kubectl get pods -n prod
+- kubectl describe pod payments-api-7d9b7f6cfd-abc12 -n prod
+- kubectl get svc -n prod
+- kubectl edit configmap payments-api-config -n prod
+- kubectl rollout restart deployment payments-api -n prod

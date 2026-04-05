@@ -1,0 +1,10 @@
+Production-ready RAG systems combine retrieval and generation to deliver grounded answers.
+
+Key steps:
+1. Ingest documents, chunk them, and generate embeddings.
+2. Store vectors in a vector database such as OpenSearch.
+3. Retrieve top-k chunks for a query using similarity search.
+4. Build a prompt that includes the retrieved context.
+5. Generate an answer with a foundation model and return citations.
+
+Production considerations include access control, observability, rate limits, and cost controls. Metadata tracking enables filtering, auditing, and re-indexing. Secure storage with KMS, least-privilege IAM, and structured logs ensure operational safety.
