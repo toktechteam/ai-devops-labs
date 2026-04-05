@@ -1,0 +1,17 @@
+Lab 04 introduces the vector data layer for AI systems on AWS.
+
+Key idea:
+- Convert text into embeddings
+- Store vectors in OpenSearch
+- Perform similarity search to retrieve relevant chunks
+
+Why it matters:
+LLMs are stateless and cannot remember documents. Vector search creates a searchable memory layer for retrieval-augmented generation.
+
+Components:
+- Amazon Bedrock embeddings
+- OpenSearch vector index
+- Lambda ingestion and search APIs
+
+Outcome:
+You can ingest content and retrieve the most relevant chunks for a query.

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vector DB Demo</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div>
+          <div class="title">Lab-04 Vector DB Demo</div>
+          <div class="subtitle">Ingest text into OpenSearch and run similarity search.</div>
+        </div>
+      </header>
+
+      <section class="config">
+        <div class="field">
+          <label for="ingestUrl">Ingest API URL</label>
+          <input id="ingestUrl" type="text" placeholder="https://.../prod/ingest" />
+        </div>
+        <div class="field">
+          <label for="searchUrl">Search API URL</label>
+          <input id="searchUrl" type="text" placeholder="https://.../prod/search" />
+        </div>
+        <div class="field">
+          <label for="authToken">Auth Token</label>
+          <input id="authToken" type="password" placeholder="Bearer token" />
+        </div>
+        <button id="saveConfig" class="btn primary">Save Settings</button>
+      </section>
+
+      <main class="grid">
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Ingest Document</h2>
+            <div class="status" id="ingestStatus">Idle</div>
+          </div>
+          <div class="field">
+            <label for="docId">Document ID</label>
+            <input id="docId" type="text" placeholder="sample-doc" />
+          </div>
+          <div class="field">
+            <label for="textInput">Text to Ingest</label>
+            <textarea id="textInput" rows="8" placeholder="Paste content here..."></textarea>
+          </div>
+          <div class="field">
+            <label for="fileInput">Or Upload .txt</label>
+            <input id="fileInput" type="file" accept=".txt" />
+          </div>
+          <button id="ingestBtn" class="btn primary">Ingest</button>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Similarity Search</h2>
+            <div class="status" id="searchStatus">Idle</div>
+          </div>
+          <div class="field">
+            <label for="queryInput">Query</label>
+            <input id="queryInput" type="text" placeholder="What is vector search?" />
+          </div>
+          <div class="field">
+            <label for="topK">Top K</label>
+            <input id="topK" type="number" min="1" max="10" value="5" />
+          </div>
+          <button id="searchBtn" class="btn primary">Search</button>
+          <div class="results" id="searchResults"></div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      window.DEMO_DEFAULTS = {
+        ingestUrl: "{{ default_ingest_url }}",
+        searchUrl: "{{ default_search_url }}",
+        authToken: "{{ default_auth_token }}",
+      };
+    </script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
