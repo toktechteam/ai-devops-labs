@@ -175,4 +175,5 @@ UI steps (using `docs/student_story.txt`):
 ```bash
 cd infra
 terraform destroy
+
 ```
