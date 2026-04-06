@@ -1,0 +1,29 @@
+Opskart Internal Incident Brief — Checkout API Slowdowns
+
+Incident summary
+- Date: 2026-04-05
+- Service: checkout-api
+- Symptoms: p95 latency jumped from 220ms to 1.9s; error rate 7%
+- Root cause: database connection pool exhausted after a config change set max_pool=5
+
+Timeline
+1) 10:12 UTC — Alerts fired for latency + error rate.
+2) 10:16 UTC — On-call verified spikes in CloudWatch and ALB 5xx.
+3) 10:22 UTC — Found config drift in ConfigMap `checkout-db-config`.
+4) 10:30 UTC — Rolled back max_pool to 40 and restarted deployment.
+5) 10:38 UTC — Latency back to normal; error rate < 1%.
+
+Runbook extract (internal only)
+- If pods show CrashLoopBackOff after DB changes:
+  - Check `checkout-db-config` for database hostname and pool size.
+  - Verify Secret `checkout-db-credentials` is valid.
+  - Restart deployment: `kubectl rollout restart deploy/checkout-api`.
+
+Routing notes for platform team
+- Summaries and rephrasing → use fast model (low cost, low latency).
+- Architecture decisions and tradeoffs → use reasoning model.
+- Internal incidents / runbooks → route to RAG path.
+- If the primary model fails, retry with fallback model.
+
+Tags (use as metadata on ingest)
+{"source":"opskart","category":"internal","service":"checkout-api"}
