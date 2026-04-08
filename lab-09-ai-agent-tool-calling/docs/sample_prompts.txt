@@ -1,0 +1,26 @@
+# Sample Prompts
+
+## EC2 chain (Tool 1 -> Tool 2)
+List EC2 instances and show health checks.
+Show me EC2 instance inventory and health for us-east-1.
+Which instances are impaired right now?
+Give me EC2 instance status with health checks.
+
+## Incident chain (Tool 1 -> Tool 2 -> Tool 3)
+We have an incident for EC2 latency alerts. Check instance health and open a ticket.
+EC2 alert fired. Run health checks and create an incident ticket.
+Ticket needed: investigate unhealthy EC2 instances and open a P2.
+
+## Runbook lookup
+Find a runbook for unhealthy EC2 instances.
+Search the playbook for EC2 CPU spikes.
+Do we have a runbook for instance recovery steps?
+
+## Ticket only
+Create a ticket for EC2 performance degradation.
+Open an incident ticket for recurring EC2 restarts.
+
+## Direct answer (no tools)
+Explain why tool calling matters for AI systems.
+What is an agentic workflow in AI operations?
+Compare tool calling vs single-shot LLM responses.
