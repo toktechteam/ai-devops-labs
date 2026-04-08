@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lab-07 Observability Studio</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div>
+          <div class="eyebrow">Lab-07 • TheOpsKart</div>
+          <h1>Advanced AI Observability Studio</h1>
+          <p>Trace every request, break down model latency, and follow the full lifecycle from API to Bedrock.</p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-title">Deep Monitoring</div>
+          <div class="hero-subtitle">OpenTelemetry + lifecycle timing for SRE-grade AI ops.</div>
+        </div>
+      </header>
+
+      <section class="config">
+        <div class="field">
+          <label for="invokeUrl">Invoke API URL</label>
+          <input id="invokeUrl" type="text" placeholder="https://.../prod/invoke" />
+        </div>
+        <div class="field">
+          <label for="authToken">Auth Token</label>
+          <input id="authToken" type="password" placeholder="Bearer token" />
+        </div>
+        <div class="field">
+          <label for="traceparent">Traceparent (optional)</label>
+          <input id="traceparent" type="text" placeholder="00-<trace-id>-<span-id>-01" />
+        </div>
+        <button id="saveConfig" class="btn primary">Save Settings</button>
+      </section>
+
+      <main class="grid">
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Invoke Request</h2>
+            <div class="status" id="invokeStatus">Idle</div>
+          </div>
+          <div class="field">
+            <label for="promptInput">Prompt</label>
+            <textarea id="promptInput" rows="6" placeholder="Explain why trace context propagation matters in AI systems."></textarea>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="modelId">Model ID</label>
+              <input id="modelId" type="text" placeholder="amazon.nova-pro-v1:0" />
+            </div>
+            <div class="field">
+              <label for="temperature">Temperature</label>
+              <input id="temperature" type="number" min="0" max="1" step="0.1" value="0.2" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>Traceparent Helper</label>
+              <button id="generateTraceparent" class="btn">Generate Traceparent</button>
+            </div>
+            <div class="field">
+              <label for="sendTrace">Send Traceparent</label>
+              <input id="sendTrace" type="checkbox" checked />
+            </div>
+          </div>
+          <button id="invokeBtn" class="btn primary">Invoke + Trace</button>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Trace + Lifecycle</h2>
+            <div class="status" id="traceStatus">Waiting</div>
+          </div>
+          <div class="answer">
+            <div class="answer-title">Trace Summary</div>
+            <div class="result-text" id="traceSummary">No trace yet.</div>
+            <div class="answer-title">Lifecycle Stages</div>
+            <div class="results" id="stageList"></div>
+            <div class="answer-title">Model Latency</div>
+            <div class="result-text" id="modelLatency">No data yet.</div>
+            <div class="answer-title">Answer</div>
+            <div class="result-text" id="answerText">No answer yet.</div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      window.DEMO_DEFAULTS = {
+        invokeUrl: "{{ default_invoke_url }}",
+        authToken: "{{ default_auth_token }}",
+        traceparent: "{{ default_traceparent }}",
+      };
+    </script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
